@@ -9,6 +9,12 @@ class Cursosx extends CI_Model {
         $this->db->order_by("idcursos", "DESC");
         return $this->db->get()->result_array();
     }
+     /*function nomecursos() {
+        $this->db->select();
+        $this->db->from('cursos');
+        $this->db->order_by("nome_curso", "Asc");
+        return $this->db->get()->result_array();
+    }*/
      function nomecurso() {
         $this->db->select();
         $this->db->from('cursos');

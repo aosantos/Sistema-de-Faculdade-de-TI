@@ -26,6 +26,12 @@ class Loginx extends CI_Model {
         $usuario = $this->db->get("operador")->row_array();
         return $usuario;
     }
+    public function LoginProfessor($login, $senha){
+        $this->db->where("login_professor", $login);
+        $this->db->where("senha_professor", $senha);
+        $usuario = $this->db->get("professor")->row_array();
+        return $usuario;
+    }
     public function departamento_diretor(){
         $id = $this->session->userdata('iddiretor');
         $this->db->select('iddiretor,departamento_iddepartamento,nome_diretor,login_diretor,imagem');
@@ -33,8 +39,7 @@ class Loginx extends CI_Model {
         $this->db->join(' departamento','departamento.iddepartamento = diretor.departamento_iddepartamento','inner');
         $this->db->where("iddiretor",$id);
         $this->db->order_by("iddiretor");
-        //echo $this->db->last_query();
-         return $this->db->get()->result_array();
+        return $this->db->get()->result_array();
        
     }
 

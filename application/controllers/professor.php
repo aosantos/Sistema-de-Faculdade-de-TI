@@ -11,9 +11,10 @@ class Professor extends CI_Controller {
     public function index() {
         $this->load->library('form_validation');
         $this->load->model('professorx');
-        $data['professor'] = $this->professorx->list_professor();
-        $nome_departamento = $this->professorx->diretor();
-        $nome_departamento2 = $this->professorx->diretor();
+        $data['professor']      = $this->professorx->list_professor();
+        
+        $nome_departamento      = $this->professorx->diretor();
+        $nome_departamento2     = $this->professorx->diretor();
         $option = "<option value=''></option>";
         foreach ($nome_departamento->result() as $linha) {
             $option .= "<option value='$linha->iddiretor'>($linha->nome_diretor)  $linha->nome_departamento</option>";

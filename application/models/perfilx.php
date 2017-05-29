@@ -25,6 +25,16 @@ class Perfilx extends CI_Model {
 
         return $this->db->get()->result_array();
     }
+     function getPerfilProfessor($id) {
+
+        $this->db->select('imagem');
+        $this->db->from('professor');
+        $this->db->where('idprofessor', $id);
+        $this->db->limit(1);
+
+        return $this->db->get()->result_array();
+    }
+
 
 }
 
