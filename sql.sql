@@ -39,12 +39,8 @@ CREATE TABLE `aluno` (
   `rg` varchar(20) DEFAULT NULL,
   `media` varchar(45) DEFAULT NULL,
   `estado_civil` varchar(255) DEFAULT NULL,
-<<<<<<< HEAD
   `sexo` char(1) DEFAULT NULL,
   `ativo` int(11) DEFAULT NULL
-=======
-  `sexo` char(1) DEFAULT NULL
->>>>>>> origin/master
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
