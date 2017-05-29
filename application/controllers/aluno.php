@@ -13,8 +13,7 @@ class Aluno extends CI_Controller {
         $this->load->model('cursosx');
         
         $data['alunos']          = $this->alunox->list_alunosParaDiretor();
-        //print_r($data);
-        //die();
+        
         $data['cursos_detalhes'] = $this->alunox->cursos_detalhes();
         
         
@@ -29,8 +28,7 @@ class Aluno extends CI_Controller {
             
             $this->db->where('idaluno', $id);
             $this->db->update('aluno', $data);
-            echo $this->db->last_query();
-            die();
+           
             
     }
     public function ativar_aluno(){
@@ -42,8 +40,7 @@ class Aluno extends CI_Controller {
             
             $this->db->where('idaluno', $id);
             $this->db->update('aluno', $data);
-            echo $this->db->last_query();
-            die();
+            
             
     }
    
