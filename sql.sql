@@ -1,22 +1,12 @@
-<<<<<<< HEAD
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+
+CREATE DATABASE IF NOT EXISTS `oliveira` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `oliveira`;
+
+-- --------------------------------------------------------
+
 --
--- Host: 127.0.0.1
--- Generation Time: 28-Maio-2017 às 23:47
--- Versão do servidor: 10.1.10-MariaDB
--- PHP Version: 7.0.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-=======
->>>>>>> origin/master
-
-create database oliveira;
-use oliveira;
-
+-- Estrutura da tabela `aluno`
+--
 
 CREATE TABLE `aluno` (
   `idaluno` int(10) UNSIGNED NOT NULL,
@@ -155,11 +145,6 @@ CREATE TABLE `diretor` (
   `cidade` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `diretor`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -169,7 +154,8 @@ CREATE TABLE `diretor` (
 CREATE TABLE `disciplinas` (
   `iddisciplinas` int(10) UNSIGNED NOT NULL,
   `cursos_detalhes_idcursos_detalhes` int(10) UNSIGNED NOT NULL,
-  `nome_disciplinas` varchar(255) DEFAULT NULL
+  `nome_disciplinas` varchar(255) DEFAULT NULL,
+  `idprofessor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -189,11 +175,6 @@ CREATE TABLE `operador` (
   `email_operador` varchar(255) DEFAULT NULL,
   `imagem` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `operador`
---
-
 
 -- --------------------------------------------------------
 
@@ -251,7 +232,8 @@ CREATE TABLE `turnos` (
 -- Indexes for table `aluno`
 --
 ALTER TABLE `aluno`
-  ADD PRIMARY KEY (`idaluno`);
+  ADD PRIMARY KEY (`idaluno`),
+  ADD KEY `aluno_FKIndex1` (`operador_idoperador`);
 
 --
 -- Indexes for table `arquivos_apoio`
@@ -359,11 +341,7 @@ ALTER TABLE `boleto`
 -- AUTO_INCREMENT for table `cursos`
 --
 ALTER TABLE `cursos`
-<<<<<<< HEAD
-  MODIFY `idcursos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-=======
-  MODIFY `idcursos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
->>>>>>> origin/master
+  MODIFY `idcursos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `cursos_detalhes`
 --
@@ -375,33 +353,20 @@ ALTER TABLE `cursos_detalhes`
 ALTER TABLE `cursos_itens`
   MODIFY `idcursos_itens` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `cursos_itens`
---
-ALTER TABLE `cursos_itens`
-  MODIFY `idcursos_itens` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `departamento`
 --
 ALTER TABLE `departamento`
-<<<<<<< HEAD
   MODIFY `iddepartamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-=======
-  MODIFY `iddepartamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
->>>>>>> origin/master
 --
 -- AUTO_INCREMENT for table `diretor`
 --
 ALTER TABLE `diretor`
-<<<<<<< HEAD
   MODIFY `iddiretor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
-  MODIFY `iddiretor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> origin/master
 --
 -- AUTO_INCREMENT for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `iddisciplinas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `iddisciplinas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `operador`
 --
@@ -411,7 +376,7 @@ ALTER TABLE `operador`
 -- AUTO_INCREMENT for table `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `idprofessor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idprofessor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `turmas`
 --
@@ -422,9 +387,3 @@ ALTER TABLE `turmas`
 --
 ALTER TABLE `turnos`
   MODIFY `idturnos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-<<<<<<< HEAD
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-=======
->>>>>>> origin/master
