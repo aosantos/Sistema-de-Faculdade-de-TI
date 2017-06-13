@@ -127,7 +127,7 @@
 					}
 ?>
               
-              <span class="hidden-xs"><?= $this->session->userdata('nome_diretor') ?></span>
+              <span class="hidden-xs"><?= $this->session->userdata('nome_professor') ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -148,7 +148,7 @@
 ?>  
                 
                 <p>
-                  <?= $this->session->userdata('nome_diretor') ?>
+                  <?= $this->session->userdata('nome_professor') ?>
                 </p>
               </li>
              
@@ -190,109 +190,53 @@
 ?>
         </div>
         <div class="pull-left info">
-          <p><?= $this->session->userdata('nome_diretor') ?></p>
+          <p><?= $this->session->userdata('nome_professor') ?></p>
         </div>
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-       <ul class="sidebar-menu">
+      <ul class="sidebar-menu">
         <li>
-          <a href="<?php echo base_url() ?>home">
-            <i class="fa fa-home"></i> <span>HOME</span>
+          <a href="<?php echo base_url() ?>meudiretor">
+            <i class="fa fa-home"></i> <span>Meu Diretor</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red"></small>
+              <small class="label pull-right bg-red">3</small>
             </span>
           </a>
         </li>
-        <li>
-          <a href="<?php echo base_url() ?>diretor">
-            <i class="fa fa-home"></i> <span>Diretores(Coordenadores)</span>
-            <span class="pull-right-container">
-                <small class="label pull-right bg-red">
-                    <?php
-                    $max = count($contar_diretor);
-                    for ($i = 0; $i < $max; $i++) {
-                    }
-                    ?>
-                    <?= $contar_diretor; ?>
-
-            </small>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url() ?>departamento">
-            <i class="fa fa-home"></i> <span>Departamentos</span>
-            <span class="pull-right-container">
-                <small class="label pull-right bg-red">
-                    <?php
-                    $max = count($contar_departamento);
-                    for ($i = 0; $i < $max; $i++) {
-                    }
-                    ?>
-                    <?= $contar_departamento ?>
-                </small>
-            </span>
-          </a>
-        </li>
-       <li>
-          <a href="<?php echo base_url() ?>curso">
-            <i class="fa fa-home"></i> <span>Cursos</span>
-            <span class="pull-right-container">
-                <small class="label pull-right bg-red">
-                    <?php
-                        $max = count($contar_cursos);
-                        for($i = 0; $i < $max; $i++){
-                        }
-                    ?>
-                    <?= $contar_cursos ?> 
-                </small>
-            </span>
-          </a>
-        </li>
+    
          <li>
-          <a href="<?php echo base_url() ?>professor">
-            <i class="fa fa-home"></i> <span>Professores</span>
+          <a href="<?php echo base_url() ?>meualuno">
+            <i class="fa fa-home"></i> <span>Meus Alunos</span>
             <span class="pull-right-container">
-                <small class="label pull-right bg-red">
-                    <?php
-                        $max = count($contar_professor);
-                        for ($i = 0; $i < $max; $i++){
-                        }
-                    ?>
-                    <?= $contar_professor ?>
-                </small>
+              <small class="label pull-right bg-red">3</small>
             </span>
           </a>
         </li>
-
+       
          <li>
-          <a href="<?php echo base_url() ?>aluno">
-            <i class="fa fa-home"></i> <span>Alunos</span>
+          <a href="<?php echo base_url() ?>chamada">
+            <i class="fa fa-home"></i> <span>Chamada</span>
             <span class="pull-right-container">
-                <small class="label pull-right bg-red">
-                    <?php 
-                        $max = count($contar_aluno);
-                        for($i=0;$i<$max;$i++){
-                        }
-                    ?>
-                    <?= $contar_aluno ?>
-                </small>
+              <small class="label pull-right bg-red">3</small>
             </span>
           </a>
         </li>
-        <li>
-          <a href="<?php echo base_url() ?>operador">
-            <i class="fa fa-home"></i> <span>Operadores</span>
+        
+         <li>
+          <a href="<?php echo base_url() ?>notas">
+            <i class="fa fa-home"></i> <span>Notas</span>
             <span class="pull-right-container">
-                <small class="label pull-right bg-red">
-                    <?php 
-                        $max = count($contar_operador);
-                        for($i=0;$i<$max;$i++){
-                        }
-                    ?>
-                    <?= $contar_operador ?>
-                </small>
+              <small class="label pull-right bg-red">3</small>
+            </span>
+          </a>
+        </li>
+        
+         <li>
+          <a href="<?php echo base_url() ?>arquivos">
+            <i class="fa fa-home"></i> <span> Arquivos de Apoio</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-red">3</small>
             </span>
           </a>
         </li>
@@ -300,18 +244,15 @@
     <!-- /.sidebar -->
   </aside>
 
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Alunos
+        Meus Alunos
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo base_url() ?>home"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo base_url() ?>diretor">Diretor</a></li>
-        <li class="active">Alunos</li>
+        <li><a href="<?php echo base_url() ?>meualuno">Meus Alunos</a></li>
       </ol>
     </section>
 
@@ -322,7 +263,7 @@
       
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Lista De Alunos</h3>
+              <h3 class="box-title">Lista </h3>
               <?php 
          if (validation_errors()) {?>
         <div class="alert alert-danger">
@@ -337,172 +278,63 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 style="color:green;"><span class="glyphicon glyphicon-lock"></span> Cadastrar </h4>
-        </div>
           
-        <div class="modal-body">
-          <form action='<?php echo base_url() ?>add_cursos' method='POST' method="get" role="form">
-              <form method="get" action=".">
-            <div class="form-group">
-              <label for="nome_curso"><span class="glyphicon glyphicon-education"></span> Curso</label>
-              <input type="text" name="nome_curso" class="form-control" id="nome_curso" placeholder="Nome do Curso">
-            </div>
-            <button style="color:white;" type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Cadastrar</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-        </div>
+        
       </div>
     </div>
   </div> 
 </div>
-<!-- Buttons -->
-<!--<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#cadastrar_diretor">Cadastrar Cursos</button>-->
 
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Nome</th>
-                  <th>Nome do Curso</th>
-                  <th>Status do Aluno</th>
-                  <th>Ações</th>
+                  <th>Disciplinas</th>
+                  <th>Cursos</th>
+                  <th>Alunos</th>
+                  <th>Semestre</th>
+                  
+                  <th></th>
                   
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                    $max = count($alunos);
-                    for ($i = 0; $i < $max; $i++) {
+                        $max = count($meusalunos);
+                        for ($i = 0; $i < $max; $i++) {
 
-                        $nome         = $alunos[$i]['nome_aluno'];
-                        $nome_curso   = $alunos[$i]['nome_curso'];
-                        $status       = $alunos[$i]['ativo'];
+                        $disciplinas      = $meusalunos[$i]['nome_disciplinas'];
+                        $cursos           = $meusalunos[$i]['nome_curso'];
+                        $alunos           = $meusalunos[$i]['nome_aluno'];
+                        $semestre         = $meusalunos[$i]['semestre'];
                         
                         ?> 
-                    <tr class="<?php ?>" id="odd_gradeX_<?= ($i + 1) ?>" data-id="<?= $alunos[$i]['idaluno'] ?>">
-                     <td><?= $nome ?></td>
-                     <td><?= $nome_curso ?></td>
-                     <td><?php if($status==0){
-                         echo $status ="Desativado";
-                     } else {
-                        echo $status="Ativo";
-                     }
-                  ?></td>
+                    <tr class="<?php ?>" id="odd_gradeX_<?php//($i + 1) ?>" data-id="<?php// $cursos[$i]['idcursos'] ?>">
+                     <td><?= $disciplinas ?></td>
+                     <td><?= $cursos ?></td>
+                     <td><?= $alunos ?></td>
+                     <td><?= $semestre ?></td>
+                     
+                     
+                     
+                     
                      
                      
                          
 <!--editar diretor-->                         
 <!-- Modal -->
-  <div class="modal fade" id="editar_alunos_<?php echo $alunos[$i]['idaluno']  ?>" role="dialog">
+  <div class="modal fade" id="editar_diretor_<?php //echo $cursos[$i]['idcursos']  ?>" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 style="color:green;"><span class="glyphicon glyphicon-lock"></span> Editar Alunos</h4>
-        </div>
-          
-        <div class="modal-body">
-            <form action='<?php echo base_url() ?>editar_aluno' method='POST' method="get" role="form">
-                <input type="hidden" id="idaluno" name="idaluno" value="<?php echo $alunos[$i]['idaluno']?>" >
-           <div class="form-group">
-             <label for="curso"><span class="glyphicon glyphicon-education"></span>Curso do Aluno</label> 
-            
-            <select class="form-control select2" style="width: 100%;"  name='curso' id='curso'>  
-            <option name="nome_curso" value=" <?php echo  $alunos[$i]['nome_curso']; ?>"><?php echo  $alunos[$i]['nome_curso']; ?></option>
-            </select>
-            </div>
-            <div class="form-group">
-              <label for="nome_aluno"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Nome do Aluno</label>
-              <input type="text" name="nome_aluno"  class="form-control" value="<?= $alunos[$i]['nome_aluno'];?>" id="nome_aluno" placeholder="Nome do Aluno">
-            </div>
-           
-           <div class="form-group">
-              <label for="semestre"><span class="glyphicon glyphicon-sort-by-alphabet"></span>Semestre</label>
-              <input type="number" name="semestre"  class="form-control" value="<?= $cursos_detalhes[$i]['semestre'];?>" id="semestre" placeholder="Semestre">
-            </div>
-            <div class="form-group">
-              <label for="cpf"><span class="glyphicon glyphicon-user"></span> CPF</label>
-              <input type="text" name="cpf"  class="form-control" value="<?= $alunos[$i]['cpf'];?>" id="cpf" placeholder="CPF">
-            </div>
-            <div class="form-group">
-              <label for="rg"><span class="glyphicon glyphicon-eye-open"></span> RG</label>
-              <input type="text" name="rg"  class="form-control" value="<?= $alunos[$i]['rg'];?>" id="rg" placeholder="RG">
-            </div>
-              <div class="form-group">
-                <label for="sexo"><span class="glyphicon glyphicon-eye-open"></span> Sexo</label>
-                <fieldset>
-            <input type="radio" name="sexo" value="M" <?php echo ($alunos[$i]['sexo'] == 'M') ? 'checked' : ''; ?> /> M
-            <input type="radio" name="sexo" value="F" <?php echo ($alunos[$i]['sexo'] == 'F') ? 'checked' : ''; ?> /> F           
-        </fieldset>                
-            </div>        
-           <div class="form-group">
-              <label for="estado_civil"><span class="glyphicon glyphicon-earphone"></span> Estado Civil</label>
-              <select name="estado_civil" class="form-control select2" style="width: 100%;"  name='estado_civil'>
-                <option value="Solteiro"   <?=($alunos[$i]['estado_civil'] == 'Solteiro')?'selected':''?> >Solteiro</option>
-                <option value="Casado"     <?=($alunos[$i]['estado_civil'] == 'Casado')?'selected':''?> >Casado</option>
-                <option value="Divorciado" <?=($alunos[$i]['estado_civil'] == 'Divorciado')?'selected':''?> >Divorciado</option>
-              </select>
-            </div>
-              <form method="get" action=".">
-           <div class="form-group">
-              <label for="cep"><span class="glyphicon glyphicon-home"></span> Cep</label>
-              <input type="cep" name="cep" class="form-control" value="<?= $alunos[$i]['cep'];?>" id="cep" placeholder="Cep">
-            </div>  
-            <div class="form-group">
-              <label for="rua"><span class="glyphicon glyphicon-home"></span> Rua</label>
-              <input type="text" name="rua" class="form-control" value="<?= $alunos[$i]['rua'];?>" id="rua" placeholder="Rua">
-            </div>
-            <div class="form-group">
-              <label for="bairro"><span class="glyphicon glyphicon-home"></span> Bairro</label>
-              <input type="text" name="bairro" class="form-control" value="<?= $alunos[$i]['bairro'];?>" id="bairro" placeholder="Bairro">
-            </div>
-            <div class="form-group">
-              <label for="cidade"><span class="glyphicon glyphicon-home"></span> Cidade</label>
-              <input type="cidade" name="cidade" class="form-control" value="<?= $alunos[$i]['cidade'];?>" id="cidade" placeholder="Cep">
-            </div>
-             <div class="form-group">
-              <label for="estado"><span class="glyphicon glyphicon-home"></span> Estado</label>
-              <input type="estado" name="estado" class="form-control" value="<?= $alunos[$i]['estado'];?>" id="uf" placeholder="Estado">
-            </div> 
-            <div class="form-group">
-              <label for="numero"><span class="glyphicon glyphicon-sort-by-order"></span> Número</label>
-              <input type="text" name="numero" class="form-control" value="<?= $alunos[$i]['numero'];?>" id="numero" placeholder="Número">
-            </div>
-            <div class="form-group">
-              <label for="email_aluno"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-              <input type="text" name="email_aluno" class="form-control" value="<?= $alunos[$i]['email_aluno'];?>" id="email_aluno" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="telefone_aluno"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
-              <input type="text" name="telefone_aluno" class="form-control" value="<?= $alunos[$i]['telefone_aluno'];?>" id="telefone_aluno" placeholder="Telefone">
-            </div>
-            <button style="color:white;" type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Cadastrar</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-        </div>
-      </div>
+        
     </div>
   </div> 
 <!--fim do editar cursos-->                         
 <td>
-<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#editar_alunos_<?php echo $alunos[$i]['idaluno'] ?>">
-    <span class="glyphicon glyphicon-edit"></span> 
-</button>
-
-<a class="btn btn-danger btn-icon btn-circle" id="remover_<?= ($i + 1) ?>" onclick="remover(this.id);">&nbsp;<i class="glyphicon glyphicon-alert">&nbsp;Desativar</i></a>
-<a class="btn btn-success btn-icon btn-circle" id="ativar_<?= ($i + 1) ?>"  onclick="ativar(this.id);">&nbsp;<i class="glyphicon glyphicon-alert">&nbsp;Ativar.....</i></a></td>
-    
-</td>
-                    
+                
                 </tr>
     <?php
 }
@@ -640,21 +472,21 @@
     $(document).ready(function () {
 
         remover = function (id) {
-            var teste = confirm('Deseja mesmo Desativar o aluno ?');
+            var teste = confirm('Deseja mesmo excluir ?');
             if (teste)
                 idx = id.split('_')[1];
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url() ?>desativa',
+                url: '<?php echo base_url() ?>removeCurso',
                 data: {
                     id: $('#odd_gradeX_' + idx).data('id')
                 },
                 success: function (result) {
-                    alert('O Aluno foi Desativado!');
+                    alert('O registro foi deletado!');
                 },
                 error: function () {
-                    alert('Erro ao Desativar o aluno!');
+                    alert('Erro ao deletar o registro,Tente novamente mais tarde!');
                 }
             });
 
@@ -668,40 +500,8 @@
 
     });
 </script>
- <script>
-    $(document).ready(function () {
-
-         ativar = function (id) {
-            var teste = confirm('Deseja mesmo Ativar o aluno ?');
-            if (teste)
-                idx = id.split('_')[1];
-
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url() ?>ativa',
-                data: {
-                    id: $('#odd_gradeX_' + idx).data('id')
-                },
-                success: function (result) {
-                    alert('O Aluno foi Ativado!');
-                },
-                error: function () {
-                    alert('Erro ao Ativar o aluno!');
-                }
-            });
-
-            $('#ativar_' + idx).closest('tr').fadeOut(400, function () {
-                $('#ativar_' + idx).closest('tr').remove();
-            });
-
-            return false;
-
-        };
-
-    });
-</script>
 <?php
-if (!isset($_SESSION['login_diretor'])) {
+if (!isset($_SESSION['login_professor'])) {
     // header("Location:login");
     redirect(base_url());
 }

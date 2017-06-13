@@ -192,7 +192,7 @@ if ($this->session->userdata('fotoUsuario') != '') {
                             <a href="<?php echo base_url() ?>operador_aluno">
                               <i class="fa fa-home"></i> <span>Alunos</span>
                               <span class="pull-right-container">
-                                <small class="label pull-right bg-red">3</small>
+                                <small class="label pull-right bg-red"></small>
                               </span>
                             </a>
                         </li>

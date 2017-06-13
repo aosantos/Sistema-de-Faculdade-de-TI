@@ -62,7 +62,7 @@
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  
+
                   <li>
                     <a href="#">
                       <div class="pull-left">
@@ -103,13 +103,13 @@
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <li class="dropdown tasks-menu">
-            
+
           </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <?php
-        
+
 					if($this->session->userdata('fotoUsuario') != '') {
 
 						$imgPerfil = $this->session->userdata('fotoUsuario');
@@ -122,14 +122,14 @@
 <?php
 					}
 ?>
-              
+
               <span class="hidden-xs"><?= $this->session->userdata('nome_diretor') ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <?php
-        
+
 					if($this->session->userdata('fotoUsuario') != '') {
 
 						$imgPerfil = $this->session->userdata('fotoUsuario');
@@ -141,8 +141,8 @@
 						<img src="<?php echo base_url()?>img/user-13.jpg" class="img-circle" alt="User Image">
 <?php
 					}
-?>  
-                
+?>
+
                 <p>
                   <?= $this->session->userdata('nome_diretor') ?>
                 </p>
@@ -157,7 +157,7 @@
               </li>
             </ul>
           </li>
-          
+
         </ul>
       </div>
     </nav>
@@ -170,16 +170,16 @@
       <div class="user-panel">
         <div class="pull-left image">
           <?php
-        
+
 					if($this->session->userdata('fotoUsuario') != '') {
 
 						$imgPerfil = $this->session->userdata('fotoUsuario');
 ?>
-						<img src="<?php echo base_url()?>images/perfil/<?=$imgPerfil?>" class="img-circle" alt="User Image" /> 
+						<img src="<?php echo base_url()?>images/perfil/<?=$imgPerfil?>" class="img-circle" alt="User Image" />
 <?php
 					} else {
 ?>
-						<img src="<?php echo base_url()?>img/user-13.jpg" alt="" /> 
+						<img src="<?php echo base_url()?>img/user-13.jpg" alt="" />
 <?php
 					}
 ?>
@@ -188,14 +188,14 @@
           <p><?= $this->session->userdata('nome_diretor') ?></p>
          </div>
       </div>
-      
+
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li>
           <a href="<?php echo base_url() ?>home">
             <i class="fa fa-home"></i> <span>HOME</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+              <small class="label pull-right bg-red"></small>
             </span>
           </a>
         </li>
@@ -203,7 +203,15 @@
           <a href="<?php echo base_url() ?>diretor">
             <i class="fa fa-home"></i> <span>Diretores(Coordenadores)</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                    $max = count($contar_diretor);
+                    for ($i = 0; $i < $max; $i++) {
+                    }
+                    ?>
+                    <?= $contar_diretor; ?>
+
+            </small>
             </span>
           </a>
         </li>
@@ -211,7 +219,14 @@
           <a href="<?php echo base_url() ?>departamento">
             <i class="fa fa-home"></i> <span>Departamentos</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                    $max = count($contar_departamento);
+                    for ($i = 0; $i < $max; $i++) {
+                    }
+                    ?>
+                    <?= $contar_departamento ?>
+                </small>
             </span>
           </a>
         </li>
@@ -219,7 +234,14 @@
           <a href="<?php echo base_url() ?>curso">
             <i class="fa fa-home"></i> <span>Cursos</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                        $max = count($contar_cursos);
+                        for($i = 0; $i < $max; $i++){
+                        }
+                    ?>
+                    <?= $contar_cursos ?> 
+                </small>
             </span>
           </a>
         </li>
@@ -227,16 +249,30 @@
           <a href="<?php echo base_url() ?>professor">
             <i class="fa fa-home"></i> <span>Professores</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                        $max = count($contar_professor);
+                        for ($i = 0; $i < $max; $i++){
+                        }
+                    ?>
+                    <?= $contar_professor ?>
+                </small>
             </span>
           </a>
         </li>
-         
+
          <li>
           <a href="<?php echo base_url() ?>aluno">
             <i class="fa fa-home"></i> <span>Alunos</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php 
+                        $max = count($contar_aluno);
+                        for($i=0;$i<$max;$i++){
+                        }
+                    ?>
+                    <?= $contar_aluno ?>
+                </small>
             </span>
           </a>
         </li>
@@ -244,7 +280,14 @@
           <a href="<?php echo base_url() ?>operador">
             <i class="fa fa-home"></i> <span>Operadores</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php 
+                        $max = count($contar_operador);
+                        for($i=0;$i<$max;$i++){
+                        }
+                    ?>
+                    <?= $contar_operador ?>
+                </small>
             </span>
           </a>
         </li>
@@ -258,7 +301,7 @@
     <section class="content-header">
       <h1>
         Diretor
-       
+
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url() ?>home"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -271,11 +314,11 @@
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-      
+
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Lista De Diretores</h3>
-              <?php 
+              <?php
          if (validation_errors()) {?>
         <div class="alert alert-danger">
           <?=  validation_errors()?>
@@ -293,16 +336,19 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 style="color:green;"><span class="glyphicon glyphicon-lock"></span> Cadastrar Diretores</h4>
         </div>
-          
+
         <div class="modal-body">
           <form action='<?php echo base_url() ?>add_diretor' method='POST' method="get" role="form">
-           
+
             <div class="form-group">
-             <label for="nome_diretor"><span class="glyphicon glyphicon-education"></span>Departamentos</label> 
-            <select  name="departamento_iddepartamento" class="form-control select2" style="width: 100%;"  name='departamento_iddepartamento' id='departamento_iddepartamento'  
-                <?=  mb_strtoupper($nome_departamento); ?>
-            autofocus  placeholder=' Departamento ' maxlength='255'/>
-            </select>
+             <label for="nome_diretor"><span class="glyphicon glyphicon-education"></span>Departamentos</label>
+            
+             <select class="form-control select2" style="width: 100%;"  name='departamento_iddepartamento' id='departamento_iddepartamento'>
+                 <?php foreach ($nome_departamento as $value): ?>
+                     <option name="departamento_iddepartamento" value=" <?php echo $value['iddepartamento']; ?>"><?php echo mb_strtoupper($value['nome_departamento']) ?></option>
+                 <?php endforeach; ?>
+             </select>
+            
             </div>
             <div class="form-group">
               <label for="nome_diretor"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Nome</label>
@@ -320,7 +366,7 @@
            <div class="form-group">
               <label for="cep"><span class="glyphicon glyphicon-home"></span> Cep</label>
               <input type="cep" name="cep" class="form-control" id="cep" placeholder="Cep">
-            </div>  
+            </div>
             <div class="form-group">
               <label for="rua"><span class="glyphicon glyphicon-home"></span> Rua</label>
               <input type="text" name="rua" class="form-control" id="rua" placeholder="Rua">
@@ -336,7 +382,7 @@
              <div class="form-group">
               <label for="estado"><span class="glyphicon glyphicon-home"></span> Estado</label>
               <input type="estado" name="estado" class="form-control" id="uf" placeholder="Estado">
-            </div> 
+            </div>
             <div class="form-group">
               <label for="numero"><span class="glyphicon glyphicon-sort-by-order"></span> Número</label>
               <input type="text" name="numero" class="form-control" id="numero" placeholder="Número">
@@ -357,7 +403,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 <!-- Buttons -->
 <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#cadastrar_diretor">Cadastrar Diretores</button>
@@ -373,7 +419,7 @@
                   <th>Telefone</th>
                   <th>Email</th>
                   <th>Ações</th>
-                  
+
                 </tr>
                 </thead>
                 <tbody>
@@ -386,16 +432,16 @@
                         $endereco   = $diretor[$i]['bairro'];
                         $telefone   = $diretor[$i]['telefone_diretor'];
                         $email      = $diretor[$i]['email_diretor'];
-                        ?> 
-                    
+                        ?>
+
                     <tr class="<?php ?>" id="odd_gradeX_<?= ($i + 1) ?>" data-id="<?= $diretor[$i]['iddiretor'] ?>">
                      <td><?= $cod ?></td>
                      <td><?= $nome ?></td>
                      <td><?= $endereco ?></td>
                      <td><?= $telefone ?></td>
                      <td><?= $email ?></td>
-                                                     
-<!--editar diretor-->                         
+
+<!--editar diretor-->
 <!-- Modal -->
   <div class="modal fade" id="editar_diretor_<?php echo $diretor[$i]['iddiretor']  ?>" role="dialog">
     <div class="modal-dialog">
@@ -406,16 +452,20 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 style="color:green;"><span class="glyphicon glyphicon-lock"></span> Cadastrar Diretores</h4>
         </div>
-          
+
         <div class="modal-body">
           <form action='<?php echo base_url() ?>editar_diretor' method='POST' method="get" role="form">
            <input type="hidden" id="iddiretor" name="iddiretor" value="<?=$diretor[$i]['iddiretor']?>" >
             <div class="form-group">
-             <label for="nome_diretor"><span class="glyphicon glyphicon-education"></span>Departamentos</label> 
-            <select  name="departamento_iddepartamento" class="form-control select2" style="width: 100%;" value="<?php echo $diretor[$i]['nome_departamento'] ?>"  name='departamento_iddepartamento' id='departamento_iddepartamento'  
-                <?=  mb_strtoupper($nome_departamento); ?>
-            autofocus  placeholder=' Departamento ' maxlength='255'/>
-            </select>
+             <label for="nome_diretor"><span class="glyphicon glyphicon-education"></span>Departamentos</label>
+            
+             <select class="form-control select2" style="width: 100%;"  name='departamento_iddepartamento' id='departamento_iddepartamento'>
+                 <?php foreach ($nome_departamento as $value): ?>
+                     <option name="departamento_iddepartamento" value=" <?= $value['iddepartamento']; ?>"><?= mb_strtoupper($value['nome_departamento']) ?></option>
+                 <?php endforeach; ?>
+             </select>
+             
+            
             </div>
             <div class="form-group">
               <label for="nome_diretor"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Nome</label>
@@ -433,7 +483,7 @@
            <div class="form-group">
               <label for="cep"><span class="glyphicon glyphicon-home"></span> Cep</label>
               <input type="cep" name="cep" value="<?php echo $diretor[$i]['cep'] ?>" class="form-control" id="cep" placeholder="Cep">
-            </div>  
+            </div>
             <div class="form-group">
               <label for="rua"><span class="glyphicon glyphicon-home"></span> Rua</label>
               <input type="text" name="rua" value="<?php echo $diretor[$i]['rua'] ?>" class="form-control" id="rua" placeholder="Rua">
@@ -449,7 +499,7 @@
              <div class="form-group">
               <label for="estado"><span class="glyphicon glyphicon-home"></span> Estado</label>
               <input type="estado" name="estado" value="<?php echo $diretor[$i]['estado'] ?>" class="form-control" id="uf" placeholder="Estado">
-            </div> 
+            </div>
             <div class="form-group">
               <label for="numero"><span class="glyphicon glyphicon-sort-by-order"></span> Número</label>
               <input type="text" name="numero" value="<?php echo $diretor[$i]['numero'] ?>" class="form-control" id="numero" placeholder="Número">
@@ -470,24 +520,24 @@
         </div>
       </div>
     </div>
-  </div> 
-<!--fim do editar diretores-->                         
+  </div>
+<!--fim do editar diretores-->
 <td>
 <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#editar_diretor_<?php echo $diretor[$i]['iddiretor'] ?>">
-    <span class="glyphicon glyphicon-edit"></span> 
+    <span class="glyphicon glyphicon-edit"></span>
 </button>
 
 <a class="btn btn-primary btn-icon btn-circle" id="remover_<?= ($i + 1) ?>" onclick="remover(this.id);">&nbsp;<i class="glyphicon glyphicon-trash"></i></a></td>
-                    
+
                 </tr>
     <?php
 }
-?>      
+?>
 
 
                  </tbody>
                 <tfoot>
- 
+
                 </tfoot>
               </table>
             </div>
@@ -510,7 +560,7 @@
     reservados.
   </footer>
 
-        
+
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo base_url()?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -551,9 +601,9 @@
                 $("#bairro").val("");
                 $("#cidade").val("");
                 $("#uf").val("");
-                
+
             }
-            
+
             //Quando o campo cep perde o foco.
             $("#cep").blur(function() {
 
@@ -574,7 +624,7 @@
                         $("#bairro").val("...");
                         $("#cidade").val("...");
                         $("#uf").val("...");
-                        
+
                         //Consulta o webservice viacep.com.br/
                         $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
@@ -584,7 +634,7 @@
                                 $("#bairro").val(dados.bairro);
                                 $("#cidade").val(dados.localidade);
                                 $("#uf").val(dados.uf);
-                                
+
                             } //end if.
                             else {
                                 //CEP pesquisado não foi encontrado.

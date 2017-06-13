@@ -35,6 +35,9 @@ $route['add_aluno']                   = "operador/add_aluno";
 $route['editar_aluno']                = "operador/editar_aluno";
 $route['desativa']                    = "aluno/desativar_aluno";
 $route['ativa']                       = "aluno/ativar_aluno";
+$route['meudiretor']                  = "professor/meudiretor";
+$route['meualuno']                    = "professor/meusalunos";
+
 
 
 

@@ -43,7 +43,9 @@ class Alunox extends CI_Model {
         
         return $this->db->get()->result_array();
     }
-    
+     function contar_aluno(){
+        return $this->db->count_all_results('aluno');
+    }
      
 }
 ?>

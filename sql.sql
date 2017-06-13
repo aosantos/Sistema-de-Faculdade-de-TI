@@ -1,22 +1,30 @@
-<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Maio-2017 às 23:47
--- Versão do servidor: 10.1.10-MariaDB
--- PHP Version: 7.0.4
+-- Generation Time: 09-Abr-2017 às 03:59
+-- Versão do servidor: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-=======
->>>>>>> origin/master
 
-create database oliveira;
-use oliveira;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `oliveira`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `aluno`
+--
 
 CREATE TABLE `aluno` (
   `idaluno` int(10) UNSIGNED NOT NULL,
@@ -28,23 +36,7 @@ CREATE TABLE `aluno` (
   `senha_aluno` char(10) DEFAULT NULL,
   `telefone_aluno` varchar(255) DEFAULT NULL,
   `situacao` varchar(255) DEFAULT NULL,
-  `imagem` varchar(255) DEFAULT NULL,
-  `cep` varchar(255) DEFAULT NULL,
-  `rua` varchar(255) DEFAULT NULL,
-  `bairro` varchar(255) DEFAULT NULL,
-  `cidade` varchar(255) DEFAULT NULL,
-  `estado` varchar(255) DEFAULT NULL,
-  `numero` varchar(255) DEFAULT NULL,
-  `cpf` varchar(13) DEFAULT NULL,
-  `rg` varchar(20) DEFAULT NULL,
-  `media` varchar(45) DEFAULT NULL,
-  `estado_civil` varchar(255) DEFAULT NULL,
-<<<<<<< HEAD
-  `sexo` char(1) DEFAULT NULL,
-  `ativo` int(11) DEFAULT NULL
-=======
-  `sexo` char(1) DEFAULT NULL
->>>>>>> origin/master
+  `imagem` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -107,22 +99,12 @@ CREATE TABLE `cursos` (
 CREATE TABLE `cursos_detalhes` (
   `idcursos_detalhes` int(10) UNSIGNED NOT NULL,
   `cursos_idcursos` int(10) UNSIGNED NOT NULL,
+  `professor_idprofessor` int(10) UNSIGNED NOT NULL,
   `aluno_idaluno` int(10) UNSIGNED NOT NULL,
-  `semestre` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `cursos_itens`
---
-
-CREATE TABLE `cursos_itens` (
-  `idcursos_itens` int(11) NOT NULL,
-  `cursos_idcuros` int(11) DEFAULT NULL,
-  `preco` decimal(15,2) DEFAULT NULL,
-  `duracao` varchar(45) DEFAULT NULL,
-  `grau` varchar(45) DEFAULT NULL
+  `nome_curso` varchar(255) DEFAULT NULL,
+  `preco_curso` decimal(15,2) DEFAULT NULL,
+  `duracao_curso` varchar(255) DEFAULT NULL,
+  `grau_curso` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -159,11 +141,6 @@ CREATE TABLE `diretor` (
   `cidade` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `diretor`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -193,11 +170,6 @@ CREATE TABLE `operador` (
   `email_operador` varchar(255) DEFAULT NULL,
   `imagem` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `operador`
---
-
 
 -- --------------------------------------------------------
 
@@ -255,25 +227,29 @@ CREATE TABLE `turnos` (
 -- Indexes for table `aluno`
 --
 ALTER TABLE `aluno`
-  ADD PRIMARY KEY (`idaluno`);
+  ADD PRIMARY KEY (`idaluno`),
+  ADD KEY `aluno_FKIndex1` (`operador_idoperador`);
 
 --
 -- Indexes for table `arquivos_apoio`
 --
 ALTER TABLE `arquivos_apoio`
-  ADD PRIMARY KEY (`idarquivos_apoio`);
+  ADD PRIMARY KEY (`idarquivos_apoio`),
+  ADD KEY `arquivos_apoio_FKIndex1` (`disciplinas_iddisciplinas`);
 
 --
 -- Indexes for table `boletim`
 --
 ALTER TABLE `boletim`
-  ADD PRIMARY KEY (`idboletim`);
+  ADD PRIMARY KEY (`idboletim`),
+  ADD KEY `boletim_FKIndex1` (`disciplinas_iddisciplinas`);
 
 --
 -- Indexes for table `boleto`
 --
 ALTER TABLE `boleto`
-  ADD PRIMARY KEY (`idboleto`);
+  ADD PRIMARY KEY (`idboleto`),
+  ADD KEY `boleto_FKIndex1` (`cursos_detalhes_idcursos_detalhes`);
 
 --
 -- Indexes for table `cursos`
@@ -285,13 +261,10 @@ ALTER TABLE `cursos`
 -- Indexes for table `cursos_detalhes`
 --
 ALTER TABLE `cursos_detalhes`
-  ADD PRIMARY KEY (`idcursos_detalhes`);
-
---
--- Indexes for table `cursos_itens`
---
-ALTER TABLE `cursos_itens`
-  ADD PRIMARY KEY (`idcursos_itens`);
+  ADD PRIMARY KEY (`idcursos_detalhes`),
+  ADD KEY `cursos_FKIndex1` (`aluno_idaluno`),
+  ADD KEY `cursos_FKIndex2` (`professor_idprofessor`),
+  ADD KEY `cursos_detalhes_FKIndex3` (`cursos_idcursos`);
 
 --
 -- Indexes for table `departamento`
@@ -303,37 +276,43 @@ ALTER TABLE `departamento`
 -- Indexes for table `diretor`
 --
 ALTER TABLE `diretor`
-  ADD PRIMARY KEY (`iddiretor`);
+  ADD PRIMARY KEY (`iddiretor`),
+  ADD KEY `diretor_FKIndex1` (`departamento_iddepartamento`);
 
 --
 -- Indexes for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  ADD PRIMARY KEY (`iddisciplinas`);
+  ADD PRIMARY KEY (`iddisciplinas`),
+  ADD KEY `disciplinas_FKIndex1` (`cursos_detalhes_idcursos_detalhes`);
 
 --
 -- Indexes for table `operador`
 --
 ALTER TABLE `operador`
-  ADD PRIMARY KEY (`idoperador`);
+  ADD PRIMARY KEY (`idoperador`),
+  ADD KEY `operador_FKIndex1` (`diretor_iddiretor`);
 
 --
 -- Indexes for table `professor`
 --
 ALTER TABLE `professor`
-  ADD PRIMARY KEY (`idprofessor`);
+  ADD PRIMARY KEY (`idprofessor`),
+  ADD KEY `professor_FKIndex1` (`diretor_iddiretor`);
 
 --
 -- Indexes for table `turmas`
 --
 ALTER TABLE `turmas`
-  ADD PRIMARY KEY (`idturmas`);
+  ADD PRIMARY KEY (`idturmas`),
+  ADD KEY `turmas_FKIndex1` (`cursos_detalhes_idcursos_detalhes`);
 
 --
 -- Indexes for table `turnos`
 --
 ALTER TABLE `turnos`
-  ADD PRIMARY KEY (`idturnos`);
+  ADD PRIMARY KEY (`idturnos`),
+  ADD KEY `turnos_FKIndex1` (`cursos_detalhes_idcursos_detalhes`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -343,7 +322,7 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `idaluno` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `idaluno` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `arquivos_apoio`
 --
@@ -363,44 +342,22 @@ ALTER TABLE `boleto`
 -- AUTO_INCREMENT for table `cursos`
 --
 ALTER TABLE `cursos`
-<<<<<<< HEAD
-  MODIFY `idcursos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-=======
-  MODIFY `idcursos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
->>>>>>> origin/master
+  MODIFY `idcursos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cursos_detalhes`
 --
 ALTER TABLE `cursos_detalhes`
-  MODIFY `idcursos_detalhes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `cursos_itens`
---
-ALTER TABLE `cursos_itens`
-  MODIFY `idcursos_itens` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `cursos_itens`
---
-ALTER TABLE `cursos_itens`
-  MODIFY `idcursos_itens` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcursos_detalhes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `departamento`
 --
 ALTER TABLE `departamento`
-<<<<<<< HEAD
-  MODIFY `iddepartamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-=======
-  MODIFY `iddepartamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
->>>>>>> origin/master
+  MODIFY `iddepartamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `diretor`
 --
 ALTER TABLE `diretor`
-<<<<<<< HEAD
-  MODIFY `iddiretor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
-  MODIFY `iddiretor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> origin/master
+  MODIFY `iddiretor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `disciplinas`
 --
@@ -410,12 +367,12 @@ ALTER TABLE `disciplinas`
 -- AUTO_INCREMENT for table `operador`
 --
 ALTER TABLE `operador`
-  MODIFY `idoperador` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idoperador` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `idprofessor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idprofessor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `turmas`
 --
@@ -426,9 +383,78 @@ ALTER TABLE `turmas`
 --
 ALTER TABLE `turnos`
   MODIFY `idturnos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-<<<<<<< HEAD
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `aluno`
+--
+ALTER TABLE `aluno`
+  ADD CONSTRAINT `aluno_ibfk_1` FOREIGN KEY (`operador_idoperador`) REFERENCES `operador` (`idoperador`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `arquivos_apoio`
+--
+ALTER TABLE `arquivos_apoio`
+  ADD CONSTRAINT `arquivos_apoio_ibfk_1` FOREIGN KEY (`disciplinas_iddisciplinas`) REFERENCES `disciplinas` (`iddisciplinas`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `boletim`
+--
+ALTER TABLE `boletim`
+  ADD CONSTRAINT `boletim_ibfk_1` FOREIGN KEY (`disciplinas_iddisciplinas`) REFERENCES `disciplinas` (`iddisciplinas`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `boleto`
+--
+ALTER TABLE `boleto`
+  ADD CONSTRAINT `boleto_ibfk_1` FOREIGN KEY (`cursos_detalhes_idcursos_detalhes`) REFERENCES `cursos_detalhes` (`idcursos_detalhes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `cursos_detalhes`
+--
+ALTER TABLE `cursos_detalhes`
+  ADD CONSTRAINT `cursos_detalhes_ibfk_1` FOREIGN KEY (`aluno_idaluno`) REFERENCES `aluno` (`idaluno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cursos_detalhes_ibfk_2` FOREIGN KEY (`professor_idprofessor`) REFERENCES `professor` (`idprofessor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cursos_detalhes_ibfk_3` FOREIGN KEY (`cursos_idcursos`) REFERENCES `cursos` (`idcursos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `diretor`
+--
+ALTER TABLE `diretor`
+  ADD CONSTRAINT `diretor_ibfk_1` FOREIGN KEY (`departamento_iddepartamento`) REFERENCES `departamento` (`iddepartamento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `disciplinas`
+--
+ALTER TABLE `disciplinas`
+  ADD CONSTRAINT `disciplinas_ibfk_1` FOREIGN KEY (`cursos_detalhes_idcursos_detalhes`) REFERENCES `cursos_detalhes` (`idcursos_detalhes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `operador`
+--
+ALTER TABLE `operador`
+  ADD CONSTRAINT `operador_ibfk_1` FOREIGN KEY (`diretor_iddiretor`) REFERENCES `diretor` (`iddiretor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `professor`
+--
+ALTER TABLE `professor`
+  ADD CONSTRAINT `professor_ibfk_1` FOREIGN KEY (`diretor_iddiretor`) REFERENCES `diretor` (`iddiretor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `turmas`
+--
+ALTER TABLE `turmas`
+  ADD CONSTRAINT `turmas_ibfk_1` FOREIGN KEY (`cursos_detalhes_idcursos_detalhes`) REFERENCES `cursos_detalhes` (`idcursos_detalhes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `turnos`
+--
+ALTER TABLE `turnos`
+  ADD CONSTRAINT `turnos_ibfk_1` FOREIGN KEY (`cursos_detalhes_idcursos_detalhes`) REFERENCES `cursos_detalhes` (`idcursos_detalhes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-=======
->>>>>>> origin/master

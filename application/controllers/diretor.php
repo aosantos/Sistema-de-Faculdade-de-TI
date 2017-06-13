@@ -4,30 +4,50 @@ class Diretor extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('loginx', 'login');
-        $this->load->helper('html');   
-         
-    }
-    
-    public function index(){
+        $this->load->helper('html');
         $this->load->model('diretorx');
-        $data['diretor']         = $this->diretorx->list_diretor();
-        $nome_departamento       = $this->diretorx->nomedepartamento();
-        $option = "<option value=''></option>";
-        foreach ($nome_departamento->result() as $linha) {
-            $option .= "<option value='$linha->iddepartamento'>$linha->nome_departamento</option>";
-        }
-        $data['nome_departamento']    = $option;
+        $this->load->model('cursosx');
+        $this->load->model('professorx');
+        $this->load->model('alunox');
+        $this->load->model('operadorx');
+        
+}
+
+    public function index(){
+        
+        $data['diretor']              =  $this->diretorx->list_diretor();
+        $data['nome_departamento']    =  $this->diretorx->nomedepartamento();
+        $data['contar_diretor']       =  $this->diretorx->contar_diretor();
+        $data['contar_departamento']  =  $this->diretorx->contar_departamento();
+        $data['contar_cursos']        =  $this->cursosx->contar_cursos();
+        $data['contar_professor']     =  $this->professorx->contar_professor();
+        $data['contar_aluno']         =  $this->alunox->contar_aluno();
+        $data['contar_operador']      =  $this->operadorx->contar_operador();
+        
         $this->load->view('diretor/index',$data);
     }
     public function home(){
-        $this->load->view('usuario/diretor');
+        
+        $data['contar_diretor']       =  $this->diretorx->contar_diretor();
+        $data['contar_departamento']  =  $this->diretorx->contar_departamento();
+        $data['contar_cursos']        =  $this->cursosx->contar_cursos();
+        $data['contar_professor']     =  $this->professorx->contar_professor();
+        $data['contar_aluno']         =  $this->alunox->contar_aluno();
+        $data['contar_operador']      =  $this->operadorx->contar_operador();
+        $this->load->view('usuario/diretor',$data);
     }
     public function departamento(){
-        $this->load->model('diretorx');
-        $data['departamento']  = $this->diretorx->list_departamento();
+        $data['departamento']         = $this->diretorx->list_departamento();
+        $data['contar_diretor']       =  $this->diretorx->contar_diretor();
+        $data['contar_departamento']  =  $this->diretorx->contar_departamento();
+        $data['contar_cursos']        =  $this->cursosx->contar_cursos();
+        $data['contar_professor']     =  $this->professorx->contar_professor();
+        $data['contar_aluno']         =  $this->alunox->contar_aluno();
+        $data['contar_operador']      =  $this->operadorx->contar_operador();
+        
         $this->load->view('departamento/index',$data);
     }
-    
+
     public function add_departamento(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nome_departamento', 'Nome do Departamento', 'required');
@@ -38,43 +58,42 @@ class Diretor extends CI_Controller {
             $data = array(
                 'nome_departamento' => $nome
             );
-            
+
             $this->db->insert('departamento', $data);
             redirect('departamento');
             exit;
         }
     }
-    
+
     public function editar_departamento() {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nome_departamento', 'Nome do Departamento', 'required');
-        $this->load->model('diretorx');
         $id = $this->input->post('iddepartamento');
         if ($this->form_validation->run() == FALSE) {
             $this->departamento();
         } else {
             $id     = $this->input->post('iddepartamento');
             $nome   = $this->input->post('nome_departamento');
-            
+
             $data   = ['nome_departamento' => $nome];
             $this->db->where('iddepartamento', $id);
             $this->db->update('departamento', $data);
-            
+
             redirect("departamento");
         }
     }
-    
+
     public function removeDepartamento($id) {
         if ($_POST) {
             $departamento   = $_POST['id'];
-            $this->load->model('diretorx');            
+            $this->load->model('diretorx');
             $this->diretorx->removeDepartamento($departamento);
         }
     }
     public function removeDiretor($id) {
         if ($_POST) {
             $diretor   = $_POST['id'];
-            $this->load->model('diretorx');            
+            $this->load->model('diretorx');
             $this->diretorx->removeDiretor($diretor);
         }
     }
@@ -92,14 +111,14 @@ class Diretor extends CI_Controller {
         $this->form_validation->set_rules('numero', 'Número', 'required');
         $this->form_validation->set_rules('email_diretor', 'Email', 'required');
         $this->form_validation->set_rules('telefone_diretor', 'Telefone', 'required');
-        
+
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         } else {
             $departamento   = $this->input->post('departamento_iddepartamento');
             $diretor        = $this->input->post('nome_diretor');
             $login          = $this->input->post('login_diretor');
-            $senha          = $this->input->post('senha_diretor');            
+            $senha          = $this->input->post('senha_diretor');
             $cep            = $this->input->post('cep');
             $rua            = $this->input->post('rua');
             $bairro         = $this->input->post('bairro');
@@ -108,7 +127,7 @@ class Diretor extends CI_Controller {
             $telefone       = $this->input->post('telefone_diretor');
             $estado         = $this->input->post('estado');
             $cidade         = $this->input->post('cidade');
-            
+
             $data = ['departamento_iddepartamento' => $departamento,
                     'nome_diretor'          => $diretor,
                     'login_diretor'         => $login,
@@ -141,7 +160,7 @@ class Diretor extends CI_Controller {
         $this->form_validation->set_rules('numero', 'Número', 'required');
         $this->form_validation->set_rules('email_diretor', 'Email', 'required');
         $this->form_validation->set_rules('telefone_diretor', 'Telefone', 'required');
-        
+
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         } else {
@@ -149,7 +168,7 @@ class Diretor extends CI_Controller {
             $departamento   = $this->input->post('departamento_iddepartamento');
             $diretor        = $this->input->post('nome_diretor');
             $login          = $this->input->post('login_diretor');
-            $senha          = $this->input->post('senha_diretor');            
+            $senha          = $this->input->post('senha_diretor');
             $cep            = $this->input->post('cep');
             $rua            = $this->input->post('rua');
             $bairro         = $this->input->post('bairro');
@@ -158,7 +177,7 @@ class Diretor extends CI_Controller {
             $telefone       = $this->input->post('telefone_diretor');
             $estado         = $this->input->post('estado');
             $cidade         = $this->input->post('cidade');
-             
+
             $data = ['departamento_iddepartamento' => $departamento,
                     'nome_diretor'          => $diretor,
                     'login_diretor'         => $login,

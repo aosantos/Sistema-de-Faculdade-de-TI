@@ -189,12 +189,12 @@
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
+       <ul class="sidebar-menu">
         <li>
           <a href="<?php echo base_url() ?>home">
             <i class="fa fa-home"></i> <span>HOME</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+              <small class="label pull-right bg-red"></small>
             </span>
           </a>
         </li>
@@ -202,7 +202,15 @@
           <a href="<?php echo base_url() ?>diretor">
             <i class="fa fa-home"></i> <span>Diretores(Coordenadores)</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                    $max = count($contar_diretor);
+                    for ($i = 0; $i < $max; $i++) {
+                    }
+                    ?>
+                    <?= $contar_diretor; ?>
+
+            </small>
             </span>
           </a>
         </li>
@@ -210,7 +218,14 @@
           <a href="<?php echo base_url() ?>departamento">
             <i class="fa fa-home"></i> <span>Departamentos</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                    $max = count($contar_departamento);
+                    for ($i = 0; $i < $max; $i++) {
+                    }
+                    ?>
+                    <?= $contar_departamento ?>
+                </small>
             </span>
           </a>
         </li>
@@ -218,7 +233,14 @@
           <a href="<?php echo base_url() ?>curso">
             <i class="fa fa-home"></i> <span>Cursos</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                        $max = count($contar_cursos);
+                        for($i = 0; $i < $max; $i++){
+                        }
+                    ?>
+                    <?= $contar_cursos ?> 
+                </small>
             </span>
           </a>
         </li>
@@ -226,16 +248,30 @@
           <a href="<?php echo base_url() ?>professor">
             <i class="fa fa-home"></i> <span>Professores</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php
+                        $max = count($contar_professor);
+                        for ($i = 0; $i < $max; $i++){
+                        }
+                    ?>
+                    <?= $contar_professor ?>
+                </small>
             </span>
           </a>
         </li>
-         
+
          <li>
           <a href="<?php echo base_url() ?>aluno">
             <i class="fa fa-home"></i> <span>Alunos</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php 
+                        $max = count($contar_aluno);
+                        for($i=0;$i<$max;$i++){
+                        }
+                    ?>
+                    <?= $contar_aluno ?>
+                </small>
             </span>
           </a>
         </li>
@@ -243,7 +279,14 @@
           <a href="<?php echo base_url() ?>operador">
             <i class="fa fa-home"></i> <span>Operadores</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">
+                    <?php 
+                        $max = count($contar_operador);
+                        for($i=0;$i<$max;$i++){
+                        }
+                    ?>
+                    <?= $contar_operador ?>
+                </small>
             </span>
           </a>
         </li>
@@ -292,15 +335,16 @@
           <h4 style="color:green;"><span class="glyphicon glyphicon-lock"></span> Cadastrar Professores</h4>
         </div>
           
-        <div class="modal-body">
+          <div class="modal-body">
           <form action='<?php echo base_url() ?>add_professor' method='POST' method="get" role="form">
            
             <div class="form-group">
              <label for="nome_diretor"><span class="glyphicon glyphicon-education"></span>Cadastro de Professor em Departamento de diretores cadastrados</label> 
-            <select  name="diretor_iddiretor" class="form-control select2" style="width: 100%;"  name='diretor_iddiretor' id='diretor_iddiretor'  
-                <?=  mb_strtoupper($nome_departamento); ?>
-            autofocus  placeholder=' Cadastro de Professor em Departamento de diretores cadastrados ' maxlength='255'/>
-            </select>
+             <select class="form-control select2" style="width: 100%;"  name='diretor_iddiretor' id='diretor_iddiretor'>
+                 <?php foreach ($nome_departamento as $value): ?>
+                 <option name="diretor_iddiretor" value=" <?= $value['iddiretor']; ?>">(<?= mb_strtoupper($value['nome_diretor']) ?>)&nbsp;&nbsp;<?= mb_strtoupper($value['nome_departamento']) ?></option>
+                 <?php endforeach; ?>
+             </select>
             </div>
             <div class="form-group">
               <label for="nome_professor"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Nome</label>
@@ -410,10 +454,12 @@
            <input type="hidden" id="idprofessor" name="idprofessor" value="<?=$professor[$i]['idprofessor']?>" >
            <div class="form-group">
              <label for="nome_diretor"><span class="glyphicon glyphicon-education"></span>Cadastro de Professor em Departamento de diretores cadastrados</label> 
-            <select  name="diretor_iddiretor" class="form-control select2" style="width: 100%;"  name='diretor_iddiretor' id='diretor_iddiretor'  
-                <?=  mb_strtoupper($nome_departamento2); ?>
-            autofocus  placeholder=' Cadastro de Professor em Departamento de diretores cadastrados ' maxlength='255'/>
-            </select>
+      
+             <select class="form-control select2" style="width: 100%;"  name='diretor_iddiretor' id='diretor_iddiretor'>
+                 <?php foreach ($nome_departamento as $value): ?>
+                 <option name="diretor_iddiretor" value=" <?= $value['iddiretor']; ?>">(<?= mb_strtoupper($value['nome_diretor']) ?>)&nbsp;&nbsp;<?= mb_strtoupper($value['nome_departamento']) ?></option>
+                 <?php endforeach; ?>
+             </select>
             </div> 
            <div class="form-group">
               <label for="nome_professor"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Nome</label>

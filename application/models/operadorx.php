@@ -14,5 +14,8 @@ class Operadorx extends CI_Model {
         $this->db->where('idoperador', $operador);
         $this->db->delete('operador');
     }
+    function contar_operador(){
+        return $this->db->count_all_results('operador');
+    }
 }
 ?>

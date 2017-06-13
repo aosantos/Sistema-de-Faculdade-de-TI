@@ -16,23 +16,31 @@ class Diretorx extends CI_Model {
         $this->db->order_by("iddepartamento", "DESC");
         return $this->db->get()->result_array();
     }
-     
+
     function removeDepartamento($departamento) {
         $this->db->where('iddepartamento', $departamento);
         $this->db->delete('departamento');
     }
-    
+
     function removeDiretor($diretor) {
         $this->db->where('iddiretor', $diretor);
         $this->db->delete('diretor');
     }
-     
+
     function nomedepartamento() {
         $this->db->select();
         $this->db->from('departamento');
         $this->db->order_by("nome_departamento", "Asc");
-        $consulta = $this->db->get();
-        return $consulta;
+        return $this->db->get()->result_array();
+        
     }
+    function contar_diretor(){
+      return $this->db->count_all_results('diretor');
+
+    }
+    function contar_departamento(){
+        return $this->db->count_all_results('departamento');
+    }
+    
 }
 ?>

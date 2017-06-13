@@ -6,26 +6,30 @@ class Professor extends CI_Controller {
         parent::__construct();
         $this->load->model('loginx', 'login');
         $this->load->helper('html');
+        $this->load->model('diretorx');
+        $this->load->model('cursosx');
+        $this->load->model('professorx');
+        $this->load->model('alunox');
+        $this->load->model('operadorx');
+        
+
     }
 
     public function index() {
         $this->load->library('form_validation');
-        $this->load->model('professorx');
         $data['professor']      = $this->professorx->list_professor();
         
-        $nome_departamento      = $this->professorx->diretor();
         $nome_departamento2     = $this->professorx->diretor();
-        $option = "<option value=''></option>";
-        foreach ($nome_departamento->result() as $linha) {
-            $option .= "<option value='$linha->iddiretor'>($linha->nome_diretor)  $linha->nome_departamento</option>";
-        }
-        $data['nome_departamento'] = $option;
         
+        $data['nome_departamento']    =  $this->professorx->diretor();
         $option2 = "<option value=''></option>";
-        foreach ($nome_departamento2->result() as $linha) {
-            $option2 .= "<option value='$linha->iddiretor'>($linha->nome_diretor)  $linha->nome_departamento</option>";
-        }
-        $data['nome_departamento2'] = $option2;
+        $data['contar_diretor']       =  $this->diretorx->contar_diretor();
+        $data['contar_departamento']  =  $this->diretorx->contar_departamento();
+        $data['contar_cursos']        =  $this->cursosx->contar_cursos();
+        $data['contar_professor']     =  $this->professorx->contar_professor();
+        $data['contar_aluno']         =  $this->alunox->contar_aluno();
+        $data['contar_operador']      =  $this->operadorx->contar_operador();
+        
         $this->load->view('professor/index', $data);
     }
 
@@ -137,7 +141,16 @@ class Professor extends CI_Controller {
             $this->professorx->removeProfessor($professor);
         }
     }
-
+    public function meudiretor(){
+        $data['meudiretor']    =  $this->professorx->list_professor();
+        
+        $this->load->view('professor/meudiretor',$data);
+    }
+    public function meusalunos(){
+        $data['meusalunos']    =  $this->professorx->meusalunos();
+        
+        $this->load->view('professor/meusalunos',$data);
+    }
 }
 
 ?>
