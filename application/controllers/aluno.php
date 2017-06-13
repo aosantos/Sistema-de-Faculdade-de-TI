@@ -15,7 +15,6 @@ class Aluno extends CI_Controller {
     }
 
     public function index() {
-<<<<<<< HEAD
         $data['alunos']               = $this->alunox->list_alunosParaDiretor();
         $data['cursos_detalhes']      = $this->alunox->cursos_detalhes();
         $data['contar_diretor']       =  $this->diretorx->contar_diretor();
@@ -24,15 +23,6 @@ class Aluno extends CI_Controller {
         $data['contar_professor']     =  $this->professorx->contar_professor();
         $data['contar_aluno']         =  $this->alunox->contar_aluno();
         $data['contar_operador']      =  $this->operadorx->contar_operador();
-=======
-        $this->load->model('alunox');
-        $this->load->model('cursosx');
-        
-        $data['alunos']          = $this->alunox->list_alunosParaDiretor();
-        
-        $data['cursos_detalhes'] = $this->alunox->cursos_detalhes();
-        
->>>>>>> origin/master
         
         $this->load->view('aluno/index',$data);
     }
@@ -45,10 +35,6 @@ class Aluno extends CI_Controller {
 
             $this->db->where('idaluno', $id);
             $this->db->update('aluno', $data);
-<<<<<<< HEAD
-=======
-           
->>>>>>> origin/master
             
     }
     public function ativar_aluno(){
@@ -60,12 +46,7 @@ class Aluno extends CI_Controller {
 
             $this->db->where('idaluno', $id);
             $this->db->update('aluno', $data);
-<<<<<<< HEAD
 
-=======
-            
-            
->>>>>>> origin/master
     }
 
 
