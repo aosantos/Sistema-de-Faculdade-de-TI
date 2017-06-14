@@ -16,7 +16,7 @@ class Curso extends CI_Controller {
 
     public function index() {
         
-        $data['cursos']               = $this->cursosx->list_cursos();
+        $data['cursos']               =  $this->cursosx->list_cursos();
         $data['contar_diretor']       =  $this->diretorx->contar_diretor();
         $data['contar_departamento']  =  $this->diretorx->contar_departamento();
         $data['contar_cursos']        =  $this->cursosx->contar_cursos();
