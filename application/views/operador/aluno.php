@@ -246,19 +246,18 @@ if ($this->session->userdata('fotoUsuario') != '') {
                                 <form method="get" action=".">
                             <div class="form-group">
              <label for="curso"><span class="glyphicon glyphicon-education"></span>Curso do Aluno</label> 
-            <select  name="curso" class="form-control select2" style="width: 100%;"  name='curso' id='curso'  
-                <?php if($nome_curso){
-                   echo mb_strtoupper($nome_curso);
-                   
-                }  else{
-                    echo "<select name=''>
-                    <option value=''>Nenhum Curso Encontrado</option>
-                    </select>";
-                    
-                }
-                ?>
             
-            </select>
+             <select class="form-control select2" style="width: 100%;" name="curso"  >
+                 <?php foreach ($nome_curso as $value): ?>
+                     <option name="curso" value=" <?= $value['idcursos']; ?>"><?= mb_strtoupper($value['nome_curso']) ?></option>
+                 <?php endforeach; ?>
+             </select>
+             <label for="curso"><span class="glyphicon glyphicon-education"></span>Departamento do Curso</label> 
+             <select class="form-control select2" style="width: 100%;" name="iddepartamento"  >
+                 <?php foreach ($nome_departamento as $value): ?>
+                     <option name="iddepartamento" value=" <?= $value['iddepartamento']; ?>"><?= mb_strtoupper($value['nome_departamento']) ?></option>
+                 <?php endforeach; ?>
+             </select>
             </div>
             <div class="form-group">
               <label for="nome_aluno"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Nome do Aluno</label>

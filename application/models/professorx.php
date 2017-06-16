@@ -17,6 +17,17 @@ class Professorx extends CI_Model {
         $this->db->order_by("idprofessor", "DESC");
         return $this->db->get()->result_array();
     }
+   
+    function meudiretor(){
+        $idprofessor = $this->session->userdata('idprofessor');
+        $this->db->select();
+        $this->db->from('professor');
+        $this->db->join('diretor', 'diretor.iddiretor = professor.diretor_iddiretor');
+        $this->db->join('departamento', 'departamento.iddepartamento = diretor.departamento_iddepartamento');
+        $this->db->where('idprofessor',$idprofessor);
+        $this->db->order_by("idprofessor", "DESC");
+        return $this->db->get()->result_array();
+    }
      function diretor() {
         $this->db->select();
         $this->db->from('diretor');
@@ -35,21 +46,17 @@ class Professorx extends CI_Model {
      
     function meusalunos(){
         
-    /*Consulta no SQL*/
-    /* SELECT * FROM `disciplinas` 
-    INNER JOIN `professor` ON `professor`.`idprofessor` = `disciplinas`.`idprofessor` 
-    INNER JOIN `cursos_detalhes` ON `disciplinas`.`cursos_detalhes_idcursos_detalhes` = `cursos_detalhes`.`idcursos_detalhes`
-    INNER JOIN `cursos` ON `cursos_detalhes`.`cursos_idcursos` = `cursos`.`idcursos`
-    INNER JOIN `aluno` ON `cursos_detalhes`.`aluno_idaluno`= `aluno`.`idaluno` 
-    WHERE `ativo` = 1
-    ORDER BY `iddisciplinas` DESC*/
+        $idprofessor = $this->session->userdata('idprofessor');
         $this->db->select();
         $this->db->from('disciplinas');
         $this->db->join('professor', 'professor.idprofessor = disciplinas.idprofessor','INNER');
         $this->db->join('cursos_detalhes', 'disciplinas.cursos_detalhes_idcursos_detalhes = cursos_detalhes.idcursos_detalhes','INNER');
         $this->db->join('cursos', 'cursos_detalhes.cursos_idcursos = cursos.idcursos','INNER');
         $this->db->join('aluno', 'cursos_detalhes.aluno_idaluno= aluno.idaluno','INNER');
+        $this->db->join('departamento', 'departamento.iddepartamento= cursos_detalhes.iddepartamento','INNER');
         $this->db->where('ativo',1);
+        $this->db->where('disciplinas`.`idprofessor',$idprofessor);
+        
         $this->db->order_by("iddisciplinas", "DESC");
         
         return $this->db->get()->result_array();

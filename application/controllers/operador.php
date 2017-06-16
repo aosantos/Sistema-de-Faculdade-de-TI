@@ -32,13 +32,8 @@ class Operador extends CI_Controller {
         $data['aluno']           = $this->alunox->list_alunosParaOperador();
         $data['cursos_detalhes'] = $this->alunox->cursos_detalhes();
         
-        $nome_curso              = $this->cursosx->nomecurso();
-        $option = "<option value=''></option>";
-        foreach ($nome_curso->result() as $linha) {
-             $option .= "<option value='$linha->idcursos'>$linha->nome_curso</option>";
-        }
-        $data['nome_curso'] = $option;
-        
+        $data['nome_curso']             =  $this->cursosx->nomecurso();
+        $data['nome_departamento']      =  $this->diretorx->nomedepartamento();
         
         $this->load->view('operador/aluno',$data);
     }
@@ -122,6 +117,7 @@ class Operador extends CI_Controller {
  public function add_aluno() {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('curso', 'Nome do Curso', 'required');
+        $this->form_validation->set_rules('iddepartamento', 'Nome do Departamento', 'required');
         $this->form_validation->set_rules('nome_aluno', 'Nome do Aluno', 'required');
         $this->form_validation->set_rules('semestre', 'Semestre', 'required');
         $this->form_validation->set_rules('cpf', 'CPF', 'required');
@@ -142,6 +138,7 @@ class Operador extends CI_Controller {
         } else {
             $idoperador         = $this->session->userdata('idoperador');
             $curso              = $this->input->post('curso');
+            $iddepartamento     = $this->input->post('iddepartamento');
             $nome               = $this->input->post('nome_aluno');
             $cpf                = $this->input->post('cpf');
             $rg                 = $this->input->post('rg');
@@ -172,6 +169,7 @@ class Operador extends CI_Controller {
                 'numero'                => $numero,
                 'email_aluno'           => $email,
                 'telefone_aluno'        => $telefone,
+                'ativo'                 => 1
             ];
             $this->db->insert('aluno', $data);
             
@@ -183,7 +181,8 @@ class Operador extends CI_Controller {
 	        $cursos_detalhes = [
                 'cursos_idcursos'                => $curso,
                 'aluno_idaluno'                  => $alunoid_ultimo,
-                'semestre'                       => $semestre,                
+                'semestre'                       => $semestre,  
+                'iddepartamento'                 => $iddepartamento
             ];
               }
              

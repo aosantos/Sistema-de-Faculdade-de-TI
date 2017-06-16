@@ -142,8 +142,7 @@ class Professor extends CI_Controller {
         }
     }
     public function meudiretor(){
-        $data['meudiretor']    =  $this->professorx->list_professor();
-        
+        $data['meudiretor']    =  $this->professorx->meudiretor();
         $this->load->view('professor/meudiretor',$data);
     }
     public function meusalunos(){

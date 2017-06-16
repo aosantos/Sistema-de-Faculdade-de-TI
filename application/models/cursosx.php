@@ -14,8 +14,8 @@ class Cursosx extends CI_Model {
         $this->db->select();
         $this->db->from('cursos');
         $this->db->order_by("nome_curso", "Asc");
-        $consulta = $this->db->get();
-        return $consulta;
+        
+        return $this->db->get()->result_array();
     }
      function removeCurso($cursos) {
         $this->db->where('idcursos', $cursos);
