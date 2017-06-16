@@ -1,8 +1,28 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 16-Jun-2017 às 01:59
+-- Versão do servidor: 10.1.10-MariaDB
+-- PHP Version: 7.0.4
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `oliveira`
+--
 CREATE DATABASE IF NOT EXISTS `oliveira` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `oliveira`;
 
--- ----------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `aluno`
@@ -94,7 +114,8 @@ CREATE TABLE `cursos_detalhes` (
   `idcursos_detalhes` int(10) UNSIGNED NOT NULL,
   `cursos_idcursos` int(10) UNSIGNED NOT NULL,
   `aluno_idaluno` int(10) UNSIGNED NOT NULL,
-  `semestre` varchar(255) DEFAULT NULL
+  `semestre` varchar(255) DEFAULT NULL,
+  `iddepartamento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -156,6 +177,18 @@ CREATE TABLE `disciplinas` (
   `cursos_detalhes_idcursos_detalhes` int(10) UNSIGNED NOT NULL,
   `nome_disciplinas` varchar(255) DEFAULT NULL,
   `idprofessor` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `disciplinas_nome`
+--
+
+CREATE TABLE `disciplinas_nome` (
+  `iddisciplinas_nome` int(11) NOT NULL,
+  `nome_disciplinas` varchar(255) DEFAULT NULL,
+  `idcursos` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -290,6 +323,12 @@ ALTER TABLE `disciplinas`
   ADD PRIMARY KEY (`iddisciplinas`);
 
 --
+-- Indexes for table `disciplinas_nome`
+--
+ALTER TABLE `disciplinas_nome`
+  ADD PRIMARY KEY (`iddisciplinas_nome`);
+
+--
 -- Indexes for table `operador`
 --
 ALTER TABLE `operador`
@@ -321,7 +360,7 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `idaluno` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `idaluno` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `arquivos_apoio`
 --
@@ -346,7 +385,7 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT for table `cursos_detalhes`
 --
 ALTER TABLE `cursos_detalhes`
-  MODIFY `idcursos_detalhes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idcursos_detalhes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `cursos_itens`
 --
@@ -356,17 +395,22 @@ ALTER TABLE `cursos_itens`
 -- AUTO_INCREMENT for table `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `iddepartamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddepartamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `diretor`
 --
 ALTER TABLE `diretor`
-  MODIFY `iddiretor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `iddiretor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
   MODIFY `iddisciplinas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `disciplinas_nome`
+--
+ALTER TABLE `disciplinas_nome`
+  MODIFY `iddisciplinas_nome` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `operador`
 --
@@ -376,7 +420,7 @@ ALTER TABLE `operador`
 -- AUTO_INCREMENT for table `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `idprofessor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idprofessor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `turmas`
 --
@@ -387,3 +431,6 @@ ALTER TABLE `turmas`
 --
 ALTER TABLE `turnos`
   MODIFY `idturnos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
