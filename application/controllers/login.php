@@ -62,9 +62,6 @@ class Login extends CI_Controller {
             $fotoUsuario        = $this->perfilx->getPerfilOperador($usuario['idoperador']);
             $this->session->set_userdata(array('fotoUsuario' => $fotoUsuario[0]['imagem']));
             $usuario['aluno']   = $this->alunox->list_alunosParaOperador();
-            
-            $this->load->model('alunox');
-            $this->load->model('cursosx');
             $data['aluno']              = $this->alunox->list_alunosParaOperador();
             $data['cursos_detalhes']    = $this->alunox->cursos_detalhes();
             $data['nome_curso']         = $this->cursosx->nomecurso();
