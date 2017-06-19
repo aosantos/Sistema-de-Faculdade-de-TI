@@ -10,6 +10,7 @@ class Diretor extends CI_Controller {
         $this->load->model('professorx');
         $this->load->model('alunox');
         $this->load->model('operadorx');
+        $this->load->model('disciplinasx');
         
 }
 
@@ -23,6 +24,7 @@ class Diretor extends CI_Controller {
         $data['contar_professor']     =  $this->professorx->contar_professor();
         $data['contar_aluno']         =  $this->alunox->contar_aluno();
         $data['contar_operador']      =  $this->operadorx->contar_operador();
+        $data['contar_disciplinas']   =  $this->disciplinasx->contar_disciplinas();
         
         $this->load->view('diretor/index',$data);
     }

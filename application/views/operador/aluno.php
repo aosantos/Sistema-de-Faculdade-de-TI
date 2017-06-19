@@ -396,11 +396,18 @@ if ($this->session->userdata('fotoUsuario') != '') {
                 <input type="hidden" id="idaluno" name="idaluno" value="<?php echo $aluno[$i]['idaluno']?>" >
            <div class="form-group">
              <label for="curso"><span class="glyphicon glyphicon-education"></span>Curso do Aluno</label> 
-            <select  name="curso" class="form-control select2" style="width: 100%;"  name='curso' id='curso'  
-                <?=  mb_strtoupper($nome_curso); ?>
-            autofocus  placeholder=' Curso do Aluno ' maxlength='255'/>
-            </select>
+             <select class="form-control select2" style="width: 100%;"  name='curso' id='curso'>
+                 <?php foreach ($nome_curso as $value): ?>
+                     <option name="curso" value=" <?php echo $value['idcursos']; ?>"><?php echo mb_strtoupper($value['nome_curso']) ?></option>
+                 <?php endforeach; ?>                     
+             </select>
             </div>
+                <label for="curso"><span class="glyphicon glyphicon-education"></span>Departamento do Curso</label> 
+             <select class="form-control select2" style="width: 100%;" name="iddepartamento"  >
+                 <?php foreach ($nome_departamento as $value): ?>
+                     <option name="iddepartamento" value=" <?= $value['iddepartamento']; ?>"><?= mb_strtoupper($value['nome_departamento']) ?></option>
+                 <?php endforeach; ?>
+             </select>
             <div class="form-group">
               <label for="nome_aluno"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Nome do Aluno</label>
               <input type="text" name="nome_aluno"  class="form-control" value="<?= $aluno[$i]['nome_aluno'];?>" id="nome_aluno" placeholder="Nome do Aluno">

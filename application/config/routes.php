@@ -38,8 +38,9 @@ $route['ativa']                       = "aluno/ativar_aluno";
 $route['meudiretor']                  = "professor/meudiretor";
 $route['meualuno']                    = "professor/meusalunos";
 $route['disciplinas']                 = "disciplinas/index";
-
-
+$route['add_disciplinas']             = "disciplinas/add_disciplinas";
+$route['editar_disciplinas']          = "disciplinas/editar_disciplinas";
+$route['removeDisciplinas']           = "disciplinas/removeDisciplinas";
 
 
 

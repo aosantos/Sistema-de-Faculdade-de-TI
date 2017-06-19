@@ -193,9 +193,8 @@
           <p><?= $this->session->userdata('nome_diretor') ?></p>
         </div>
       </div>
-      
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
+       <ul class="sidebar-menu">
         <li>
           <a href="<?php echo base_url() ?>home">
             <i class="fa fa-home"></i> <span>HOME</span>
@@ -206,7 +205,7 @@
         </li>
         <li>
           <a href="<?php echo base_url() ?>diretor">
-            <i class="fa fa-home"></i> <span>Diretores(Coordenadores)</span>
+            <i class="fa  fa-child"></i> <span>Diretores(Coordenadores)</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -222,7 +221,7 @@
         </li>
         <li>
           <a href="<?php echo base_url() ?>departamento">
-            <i class="fa fa-home"></i> <span>Departamentos</span>
+            <i class="fa fa-institution"></i> <span>Departamentos</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -237,7 +236,7 @@
         </li>
        <li>
           <a href="<?php echo base_url() ?>curso">
-            <i class="fa fa-home"></i> <span>Cursos</span>
+            <i class="fa fa-suitcase"></i> <span>Cursos</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -252,7 +251,7 @@
         </li>
          <li>
           <a href="<?php echo base_url() ?>professor">
-            <i class="fa fa-home"></i> <span>Professores</span>
+            <i class="fa  fa-child"></i> <span>Professores</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -268,7 +267,7 @@
 
          <li>
           <a href="<?php echo base_url() ?>aluno">
-            <i class="fa fa-home"></i> <span>Alunos</span>
+            <i class="fa  fa-child"></i> <span>Alunos</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php 
@@ -283,7 +282,7 @@
         </li>
         <li>
           <a href="<?php echo base_url() ?>operador">
-            <i class="fa fa-home"></i> <span>Operadores</span>
+            <i class="fa  fa-child"></i> <span>Operadores</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php 
@@ -293,6 +292,14 @@
                     ?>
                     <?= $contar_operador ?>
                 </small>
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="<?php echo base_url() ?>disciplinas">
+            <i class="fa fa-book"></i> <span>Disciplinas</span>
+            <span class="pull-right-container">
             </span>
           </a>
         </li>
@@ -345,8 +352,19 @@
           <form action='<?php echo base_url() ?>add_disciplinas' method='POST' method="get" role="form">
               <form method="get" action=".">
             <div class="form-group">
-              <label for="nome_curso"><span class="glyphicon glyphicon-education"></span> Disciplinas</label>
-              <input type="text" name="nome_curso" class="form-control" id="nome_curso" placeholder="Nome do Disciplina">
+              <label for="nome_disciplinas"><span class="glyphicon glyphicon-education"></span> Disciplinas</label>
+              <input type="text" name="nome_disciplinas" class="form-control" id="nome_disciplinas" placeholder="Nome da Disciplina">
+            </div>
+               <label for="nome_curso"><span class="glyphicon glyphicon-education"></span> Cursos</label>
+             <select class="form-control select2" style="width: 100%;"  name='nome_curso' id='nome_curso'>
+                 <?php foreach ($nomecurso as $value): ?>
+                     <option name="nome_curso" value=" <?php echo $value['idcursos']; ?>"><?php echo mb_strtoupper($value['nome_curso']) ?></option>
+                 <?php endforeach; ?>
+                     
+             </select>
+            <div class="form-group">
+              <label for="semestre"><span class="glyphicon glyphicon-sort-by-alphabet"></span>Semestre</label>
+              <input type="number" name="semestre"  class="form-control" id="semestre" placeholder="Semestre">
             </div>
             <button style="color:white;" type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Cadastrar</button>
           </form>
@@ -367,7 +385,8 @@
                 <thead>
                 <tr>
                   <th>Disciplinas</th>
-                  <th>Curso</th>                  
+                  <th>Curso</th>
+                  <th>Semestre</th>
                   <th>Ações</th>
                   
                 </tr>
@@ -377,19 +396,21 @@
                     $max = count($disciplinas);
                     for ($i = 0; $i < $max; $i++) {
 
-                        $id         = $disciplinas[$i]['iddisciplinas_nome'];
-                        $disciplina = $disciplinas[$i]['nome_disciplinas'];
-                        $cursos      = $disciplinas[$i]['nome_curso'];
+                        $id         =  $disciplinas[$i]['iddisciplinas_nome'];
+                        $disciplina =  $disciplinas[$i]['nome_disciplinas'];
+                        $cursos     = $disciplinas[$i]['nome_curso'];
+                        $semestre   =  $disciplinas[$i] ['semestre'];
                         
                         ?> 
                     <tr class="<?php ?>" id="odd_gradeX_<?= ($i + 1) ?>" data-id="<?= $disciplinas[$i]['iddisciplinas_nome'] ?>">
                      <td><?= $disciplina ?></td>
                      <td><?= $cursos ?></td>
+                     <td><?= $semestre?></td>
                      
                          
-<!--editar diretor-->                         
+<!--editar -->                         
 <!-- Modal -->
-  <div class="modal fade" id="editar_diretor_<?php //echo $cursos[$i]['idcursos']  ?>" role="dialog">
+  <div class="modal fade" id="editar_disciplinas_<?php echo $disciplinas[$i]['iddisciplinas_nome']  ?>" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -400,12 +421,22 @@
         </div>
           
         <div class="modal-body">
-          <form action='<?php echo base_url() ?>editar_disciplina' method='POST' method="get" role="form">
-           <input type="hidden" id="idcursos" name="iddisciplinas_nome" value="<?=$disciplinas[$i]['iddisciplinas_nome']?>" >
+          <form action='<?php echo base_url() ?>editar_disciplinas' method='POST' method="get" role="form">
+           <input type="hidden" id="iddisciplinas_nome" name="iddisciplinas_nome" value="<?=$id?>" >
               <form method="get" action=".">
             <div class="form-group">
-              <label for="nome_curso"><span class="glyphicon glyphicon-education"></span> Curso</label>
-              <input type="text" name="nome_curso" value="<?php ?>" class="form-control" id="nome_curso" placeholder="Curso">
+              <label for="nome_disciplinas"><span class="glyphicon glyphicon-education"></span> Disciplinas</label>
+              <input type="text" name="nome_disciplinas" value="<?=$disciplina ?>" class="form-control" id="nome_disciplinas" placeholder="Nome da Disciplina">
+            </div>
+               <label for="nome_curso"><span class="glyphicon glyphicon-education"></span> Cursos</label>
+             <select class="form-control select2" style="width: 100%;"  name='nome_curso' id='nome_curso'>
+                 <?php foreach ($nomecurso as $value): ?>
+                     <option name="nome_curso" value=" <?php echo $value['idcursos']; ?>"><?php echo mb_strtoupper($value['nome_curso']) ?></option>
+                 <?php endforeach; ?>                     
+             </select>
+            <div class="form-group">
+              <label for="semestre"><span class="glyphicon glyphicon-sort-by-alphabet"></span>Semestre</label>
+              <input type="number" name="semestre" value="<?=$semestre ?>"  class="form-control" id="semestre" placeholder="Semestre">
             </div>
             <button style="color:white;" type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Cadastrar</button>
           </form>
@@ -418,11 +449,11 @@
   </div> 
 <!--fim do editar disciplinas-->                         
 <td>
-<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#editar_diretor_<?php echo $disciplinas[$i]['iddisciplinas_nome'] ?>">
+<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#editar_disciplinas_<?php echo $disciplinas[$i]['iddisciplinas_nome'] ?>">
     <span class="glyphicon glyphicon-edit"></span> 
 </button>
 
-<a class="btn btn-primary btn-icon btn-circle" id="remover_<?php// ($i + 1) ?>" onclick="remover(this.id);">&nbsp;<i class="glyphicon glyphicon-trash"></i></a></td>
+<a class="btn btn-primary btn-icon btn-circle" id="remover_<?= ($i + 1) ?>" onclick="remover(this.id);">&nbsp;<i class="glyphicon glyphicon-trash"></i></a></td>
                     
                 </tr>
     <?php
@@ -567,7 +598,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url() ?>removeCurso',
+                url: '<?php echo base_url() ?>removeDisciplinas',
                 data: {
                     id: $('#odd_gradeX_' + idx).data('id')
                 },

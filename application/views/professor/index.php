@@ -200,7 +200,7 @@
         </li>
         <li>
           <a href="<?php echo base_url() ?>diretor">
-            <i class="fa fa-home"></i> <span>Diretores(Coordenadores)</span>
+            <i class="fa  fa-child"></i> <span>Diretores(Coordenadores)</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -216,7 +216,7 @@
         </li>
         <li>
           <a href="<?php echo base_url() ?>departamento">
-            <i class="fa fa-home"></i> <span>Departamentos</span>
+            <i class="fa fa-institution"></i> <span>Departamentos</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -231,7 +231,7 @@
         </li>
        <li>
           <a href="<?php echo base_url() ?>curso">
-            <i class="fa fa-home"></i> <span>Cursos</span>
+            <i class="fa fa-suitcase"></i> <span>Cursos</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -246,7 +246,7 @@
         </li>
          <li>
           <a href="<?php echo base_url() ?>professor">
-            <i class="fa fa-home"></i> <span>Professores</span>
+            <i class="fa  fa-child"></i> <span>Professores</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php
@@ -262,7 +262,7 @@
 
          <li>
           <a href="<?php echo base_url() ?>aluno">
-            <i class="fa fa-home"></i> <span>Alunos</span>
+            <i class="fa  fa-child"></i> <span>Alunos</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php 
@@ -277,7 +277,7 @@
         </li>
         <li>
           <a href="<?php echo base_url() ?>operador">
-            <i class="fa fa-home"></i> <span>Operadores</span>
+            <i class="fa  fa-child"></i> <span>Operadores</span>
             <span class="pull-right-container">
                 <small class="label pull-right bg-red">
                     <?php 
@@ -287,6 +287,14 @@
                     ?>
                     <?= $contar_operador ?>
                 </small>
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="<?php echo base_url() ?>disciplinas">
+            <i class="fa fa-book"></i> <span>Disciplinas</span>
+            <span class="pull-right-container">
             </span>
           </a>
         </li>

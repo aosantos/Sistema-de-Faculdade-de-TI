@@ -148,6 +148,7 @@ class Professor extends CI_Controller {
     public function meusalunos(){
         $data['meusalunos']    =  $this->professorx->meusalunos();
         
+        
         $this->load->view('professor/meusalunos',$data);
     }
 }

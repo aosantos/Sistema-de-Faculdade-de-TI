@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Jun-2017 às 01:59
+-- Generation Time: 19-Jun-2017 às 03:01
 -- Versão do servidor: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -188,7 +188,8 @@ CREATE TABLE `disciplinas` (
 CREATE TABLE `disciplinas_nome` (
   `iddisciplinas_nome` int(11) NOT NULL,
   `nome_disciplinas` varchar(255) DEFAULT NULL,
-  `idcursos` int(11) DEFAULT NULL
+  `idcursos` int(11) DEFAULT NULL,
+  `semestre` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -360,7 +361,7 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `idaluno` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `idaluno` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT for table `arquivos_apoio`
 --
@@ -385,7 +386,7 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT for table `cursos_detalhes`
 --
 ALTER TABLE `cursos_detalhes`
-  MODIFY `idcursos_detalhes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idcursos_detalhes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `cursos_itens`
 --
@@ -405,12 +406,12 @@ ALTER TABLE `diretor`
 -- AUTO_INCREMENT for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `iddisciplinas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iddisciplinas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `disciplinas_nome`
 --
 ALTER TABLE `disciplinas_nome`
-  MODIFY `iddisciplinas_nome` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iddisciplinas_nome` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `operador`
 --
